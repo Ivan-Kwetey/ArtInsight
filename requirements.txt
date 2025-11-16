@@ -1,8 +1,8 @@
-Flask==2.3.4
-gunicorn==21.2.0
+Flask==2.3.3
+gunicorn==20.1.0
 requests==2.31.0
 tensorflow==2.13.0
-pillow==10.1.0
-pandas==2.2.1
-numpy==1.26.0
+pillow==10.0.0
+pandas==2.1.1
+numpy==1.25.1
 gdown==4.7.1

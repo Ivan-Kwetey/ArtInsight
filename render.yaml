@@ -1,11 +1,9 @@
 services:
   - type: web
-    name: artinsight
+    name: ArtInsight
     env: python
     plan: free
-    region: oregon
+    branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
-    envVars:
-      - key: SECRET_KEY
-        value: "super-secret-key"
+    pythonVersion: 3.11.6
