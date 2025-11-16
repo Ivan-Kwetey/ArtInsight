@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtInsight</title>
+  <link rel="stylesheet" href="/static/css/style2.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <h1>ArtInsight</h1>
+  </header>
+  <main>
+    <section class="gallery" id="gallery">
+      <img src="/static/images/image1.jpg" alt="Cubism Painting">
+      <img src="/static/images/image2.jpg" alt="Girl with a Pearl Earring">
+      <img src="/static/images/image3.jpg" alt="Les Demoiselles d'Avignon">
+      <img src="/static/images/image4.jpg" alt="The Supper at Emmaus">
+    </section>
+    <section class="description" id="description">
+      <h2>Classify and Explore Art Styles</h2>
+      <p>Upload an image of any painting and let ArtInsight classify it into its art style while giving you rich historical context.</p>
+      <label for="file-upload" class="upload-btn">Upload</label>
+      <input type="file" id="file-upload" accept="image/*" hidden>
+    </section>
+    <section id="preview-section">
+      <img id="preview-image" alt="Preview" style="display: none; margin-top: 20px;">
+    </section>
+  </main>  
+  <script src="/static/js/script.js"></script>
+</body>
+</html>
+

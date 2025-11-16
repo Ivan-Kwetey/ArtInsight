@@ -1,0 +1,104 @@
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nav-item {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid white;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.nav-item.active {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.result-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.painting img {
+    max-width: 300px;
+    border: 2px solid #fff;
+}
+
+.details {
+    flex-grow: 1;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.details h2 {
+    font-size: 22px;
+}
+
+.classification {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.style-percentage {
+    text-align: center;
+    width: 48%;
+}
+
+.style-percentage h3 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.style-percentage p {
+    font-size: 18px;
+    margin: 5px 0 0;
+}
+
+.upload-section p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+#start-over-btn {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#start-over-btn:hover {
+    background-color: #0056b3;
+}

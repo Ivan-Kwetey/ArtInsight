@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtInsight - Classification Results</title>
+    <link rel="stylesheet" href="/static/css/style2.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/" class="nav-item active">Home</a>
+                <a href="#" class="nav-item">About</a>
+                <a href="#" class="nav-item">Features</a>
+                <a href="#" class="nav-item">Contact</a>
+            </nav>
+        </header>
+        <h1>ArtInsight</h1>
+        
+        <div class="result-section">
+            <div class="painting">
+                <img src="" alt="Classified Painting" id="painting-image">
+            </div>
+            <div class="details">
+                <h2 id="painting-title"></h2>
+                <p id="painting-description"></p>
+                <div class="classification">
+                    <div class="style-percentage">
+                        <h3 id="style1-percentage"></h3>
+                        <p id="style1-name"></p>
+                    </div>
+                    <div class="style-percentage">
+                        <h3 id="style2-percentage"></h3>
+                        <p id="style2-name"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-section">
+            <p>Classify and Explore Art Styles</p>
+            <p>Upload an image of any painting and let ArtInsight classify it into its art style while giving you rich historical context.</p>
+            <input type="file" id="image-upload" accept="image/*" style="display: none;" />
+            <button id="start-over-btn" onclick="window.location.href='/'">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        // Extract parameters from the URL and update elements dynamically
+        const urlParams = new URLSearchParams(window.location.search);
+        const imageUrl = urlParams.get('image_url');
+        const predictionData = JSON.parse(urlParams.get('prediction'));
+
+        if (imageUrl && predictionData) {
+            document.getElementById('painting-image').src = imageUrl;
+            document.getElementById('painting-title').textContent = `${predictionData.artist_name}, ${predictionData.painting_title}`;
+            document.getElementById('style1-percentage').textContent = `${predictionData.style1_percentage}%`;
+            document.getElementById('style1-name').textContent = predictionData.style1_name;
+            document.getElementById('style2-percentage').textContent = `${predictionData.style2_percentage}%`;
+            document.getElementById('style2-name').textContent = predictionData.style2_name;
+        } else {
+            alert("Invalid or missing prediction data.");
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
