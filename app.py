@@ -1,6 +1,5 @@
 import os
 import logging
-import requests
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -22,10 +21,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 
-# 🔥 Your Google Drive direct download URL
-GOOGLE_DRIVE_MODEL_URL = (
-    "https://drive.google.com/uc?export=download&id=10qkDnVU8f6d4xQRmPzqliMx6nsjHhqTS"
-)
+# Google Drive file ID for the .h5 model
+GOOGLE_DRIVE_FILE_ID = "10qkDnVU8f6d4xQRmPzqliMx6nsjHhqTS"
+GOOGLE_DRIVE_MODEL_URL = f"https://drive.google.com/uc?id={GOOGLE_DRIVE_FILE_ID}"
 
 # -------------------------------------------------
 # Flask App Setup
@@ -60,10 +58,6 @@ def process_image(image_path):
     return np.expand_dims(arr, axis=0)
 
 
-MODEL_PATH = os.path.join(BASE_DIR, "art_style_classifier_with_inceptionv3.h5")
-GOOGLE_DRIVE_MODEL_URL = "https://drive.google.com/uc?id=10qkDnVU8f6d4xQRmPzqliMx6nsjHhqTS"
-logger = logging.getLogger(__name__)
-
 def download_model_if_needed():
     """Download model from Google Drive if not found."""
     if os.path.exists(MODEL_PATH):
@@ -77,7 +71,6 @@ def download_model_if_needed():
     except Exception as e:
         logger.exception(f"Failed to download model: {e}")
         raise RuntimeError("Model download failed.") from e
-
 
 
 # -------------------------------------------------
@@ -104,7 +97,7 @@ except Exception as e:
     model = None
 
 # -------------------------------------------------
-# Class Labels (make sure matches model outputs)
+# Class Labels (ensure matches model outputs)
 # -------------------------------------------------
 class_labels = [
     "Abstract Expressionism", "Baroque", "Cubism", "Expressionism",
@@ -183,6 +176,9 @@ def predict():
             },
         }
 
+        # Optional: remove uploaded file after prediction to save space
+        os.remove(file_path)
+
         return jsonify(result)
 
     except Exception as e:
@@ -199,4 +195,4 @@ def uploaded_file(filename):
 # Local Dev Run
 # -------------------------------------------------
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5001)))
